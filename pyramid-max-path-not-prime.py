@@ -67,10 +67,12 @@ def maxSum(pyram, m):
     # and adds those who are not primes
     for i in range(m-1, -1, -1): 
         for j in range(i+1):
-            if (pyram[i+1][j] > pyram[i+1][j+1]) and pyram[i][j] not in primeList: 
+            if pyram[i][j] in primeList:
+                pyram[i][j] = 0
+            elif (pyram[i+1][j] > pyram[i+1][j+1]):
                 pyram[i][j] += pyram[i+1][j] 
-            elif pyram[i][j] not in primeList: 
-                pyram[i][j] += pyram[i+1][j+1] 
+            else: 
+                pyram[i][j] += pyram[i+1][j+1]
     # return the top element as it is the maximum sum 
     # with the given criteria
     return pyram[0][0] 
